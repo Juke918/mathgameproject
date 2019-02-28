@@ -246,6 +246,6 @@ def lost():
 	print 'Oops! You lost! Try Again (just hit up arrow and then enter)... Loser'
 	print ''
 	os._exit(0)
-endgame()
+
 main()
 
