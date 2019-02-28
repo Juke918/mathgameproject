@@ -226,9 +226,15 @@ def go():
 
 def main():
 
+	print ''
+	print ''
+	print ''
 	raw_input('Welcome to my math game! Press enter to continue...')
+	print ''
 	raw_input('You will have to answer 5 randomly generated math questions in order to recieve a prize at the end! Press enter to continue...')
+	print ''
 	raw_input('You will have 20 seconds per question and will need a calculator! Press enter to begin...')
+	print ''
 	print('3')
 	time.sleep(1)
 	print('2')
