@@ -18,7 +18,7 @@ score = 0
 
 
 timeLeft = 0
-q = Queue.Queue()			`#starting up the queue for data sharing across threads
+q = Queue.Queue()#starting up the queue for data sharing across threads
 
 
 
@@ -30,22 +30,22 @@ def similarity():
 
 	ab = randint(1, 50)
 
-	bc = randint(1, 50)		#random generate numbers
+	bc = randint(1, 50)#random generate numbers
 
 	de = randint(1, 50)
 
 
 	ab = float(ab)
 
-	bc = float(bc)			#data type conversion for syntax
+	bc = float(bc)#data type conversion for syntax
 
 	de = float(de)
 
-	x = (de*bc)/ab			#geometry equation to figure out value of x
+	x = (de*bc)/ab#geometry equation to figure out value of x
 
 	#print float(x)
 
-	x = round(float(x),2)		#rounding x to two decimal points
+	x = round(float(x),2)#rounding x to two decimal points
 
 	#print(x)
 
@@ -57,7 +57,7 @@ def similarity():
 
 
 
-	print''			#space between text
+	print''#space between text
 	print''
 
 	#print 'line AB of length ' + str(a) + ' and line BC of length ' + str(b) ' of triangle ABC is similar to line DE of length ' + str(d) + ' and line EF of length x of respectively of triangle DEF'
@@ -70,9 +70,9 @@ def similarity():
 
 	print ''
 
-	answer = raw_input()   #answer equals user input
+	answer = raw_input()#answer equals user input
 
-	answer = float(answer)  #data type conversion
+	answer = float(answer)#data type conversion
 
 	print ''
 
@@ -97,13 +97,13 @@ def polyangle():
 	print ''
 	print ''
 
-	sides = randint(3,20)		#random generate numbers
+	sides = randint(3,20)#random generate numbers
 
-	sides = float(sides)		#data type conversion	
+	sides = float(sides)#data type conversion	
 
-	angle = (180 * (sides-2))/sides		#geometry equation to figure out measure of interior angle
+	angle = (180 * (sides-2))/sides#geometry equation to figure out measure of interior angle
 
-	angle = round(float(angle),2) 		#round answer to decimal points
+	angle = round(float(angle),2)#round answer to decimal points
 
 	#print(angle)
 
@@ -142,7 +142,7 @@ def timer(timeLeft, q):
 	#time.sleep(1)
 
 	
-	timeLeft = q.get() #gets value of variable timeLeft from queue
+	timeLeft = q.get()#gets value of variable timeLeft from queue
 		
 	
 	#print('yes')
@@ -153,7 +153,7 @@ def timer(timeLeft, q):
 
 
 	
-		time.sleep(1) #waits a second
+		time.sleep(1)#waits a second
 
 
 	else:
@@ -174,7 +174,7 @@ def run(timeLeft, q):
 
 	
 	timeLeft = 120
-	q.put(timeLeft) #pushes timeLeft into queue
+	q.put(timeLeft)#pushes timeLeft into queue
 	
 	questions = [similarity, polyangle]
 	random.choice(questions)()
