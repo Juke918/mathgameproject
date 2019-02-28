@@ -2,14 +2,14 @@ import sys
 import time
 import random
 from random import randint
-from PIL import Image
+from PIL import Image			
 
 import os
 
 #from threading import Thread
 import threading, Queue
 
-
+#importing a bunch of librarys 
 
 score = 0
 
@@ -18,33 +18,34 @@ score = 0
 
 
 timeLeft = 0
-q = Queue.Queue()
+q = Queue.Queue()			`#starting up the queue for data sharing across threads
 
 
 
 
 
+#function for randomly generated question on similarity
 
 def similarity():
 
 	ab = randint(1, 50)
 
-	bc = randint(1, 50)
+	bc = randint(1, 50)		#random generate numbers
 
 	de = randint(1, 50)
 
 
 	ab = float(ab)
 
-	bc = float(bc)
+	bc = float(bc)			#data type conversion for syntax
 
 	de = float(de)
 
-	x = (de*bc)/ab
+	x = (de*bc)/ab			#geometry equation to figure out value of x
 
 	#print float(x)
 
-	x = round(float(x),2)
+	x = round(float(x),2)		#rounding x to two decimal points
 
 	#print(x)
 
@@ -56,22 +57,22 @@ def similarity():
 
 
 
-	print''
+	print''			#space between text
 	print''
 
 	#print 'line AB of length ' + str(a) + ' and line BC of length ' + str(b) ' of triangle ABC is similar to line DE of length ' + str(d) + ' and line EF of length x of respectively of triangle DEF'
 	print 'line AB of length ' + str(ab) + ' and line BC of length ' + str(bc) + ' of triangle ABC is similar to' 
-	print 'line DE of length ' + str(de) + ' and line EF of length x of triangle DEF'
+	print 'line DE of length ' + str(de) + ' and line EF of length x of triangle DEF'  #writing question
 
 	print ''
 
-	print 'What does x equal [round two decimal places]?'
+	print 'What does x equal [round two decimal places]?' 
 
 	print ''
 
-	answer = raw_input()
+	answer = raw_input()   #answer equals user input
 
-	answer = float(answer)
+	answer = float(answer)  #data type conversion
 
 	print ''
 
@@ -85,22 +86,24 @@ def similarity():
 	else:
 		print 'wrong loser the answer was ' + str(x)
 		lost()
+		
+#determines which function to run depending on answer
 
 
 
-
+#function for randomly generated question on interior angles of regular polygons
 def polyangle():
 
 	print ''
 	print ''
 
-	sides = randint(3,20)
+	sides = randint(3,20)		#random generate numbers
 
-	sides = float(sides)
+	sides = float(sides)		#data type conversion	
 
-	angle = (180 * (sides-2))/sides
+	angle = (180 * (sides-2))/sides		#geometry equation to figure out measure of interior angle
 
-	angle = round(float(angle),2)
+	angle = round(float(angle),2) 		#round answer to decimal points
 
 	#print(angle)
 
@@ -112,7 +115,7 @@ def polyangle():
 
 	print ''
 
-	answer = raw_input()
+	answer = raw_input()	
 
 	print ''
 
@@ -131,7 +134,7 @@ def polyangle():
 
 
 
-
+#function for timer
 
 
 def timer(timeLeft, q):
@@ -139,7 +142,7 @@ def timer(timeLeft, q):
 	#time.sleep(1)
 
 	
-	timeLeft = q.get()
+	timeLeft = q.get() #gets value of variable timeLeft from queue
 		
 	
 	#print('yes')
@@ -150,7 +153,7 @@ def timer(timeLeft, q):
 
 
 	
-		time.sleep(1)
+		time.sleep(1) #waits a second
 
 
 	else:
@@ -162,7 +165,7 @@ def timer(timeLeft, q):
 
 
 
-
+#randomly runs questions and sets timeLeft
 
 
 def run(timeLeft, q):
@@ -171,7 +174,7 @@ def run(timeLeft, q):
 
 	
 	timeLeft = 120
-	q.put(timeLeft)
+	q.put(timeLeft) #pushes timeLeft into queue
 	
 	questions = [similarity, polyangle]
 	random.choice(questions)()
@@ -179,11 +182,13 @@ def run(timeLeft, q):
 
 
 
-
+#sets functions timer() and run() to threads
 
 threadRun = threading.Thread(target=run,args=(timeLeft,q))
 threadTimer = threading.Thread(target=timer,args=(timeLeft,q))
 
+
+#babeeeeeeee
 
 def babe():
 	img = Image.open('babe.jpg')
@@ -191,6 +196,8 @@ def babe():
 	img.show()
 
 
+#function for endgame when you get 5 right
+	
 def endgame():
 
 	print ''
@@ -209,7 +216,8 @@ def endgame():
 	babe()
 	os._exit(0)
 
-	
+#function for correct answers
+
 def correct():
 
 	global score
@@ -218,12 +226,13 @@ def correct():
 		endgame()
 	run(timeLeft, q)
 
+#runs the threads
 def go():
 
 	threadRun.start()
 	threadTimer.start()
 
-
+#begining of code --- instructions
 def main():
 
 	print ''
@@ -245,7 +254,7 @@ def main():
 	time.sleep(.25)
 	go()
 
-
+#function for when you lose
 def lost():
 
 	print ''
